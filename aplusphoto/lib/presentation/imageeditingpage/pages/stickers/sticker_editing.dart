@@ -206,6 +206,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                                         .requestFocus(FocusNode());
                                     await Future.delayed(
                                         const Duration(milliseconds: 100));
+                                    // ignore: use_build_context_synchronously
                                     showDialog(
                                         context: context,
                                         builder: (context) {

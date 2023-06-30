@@ -98,7 +98,7 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
   double blur = 0;
   int selected = 0;
   int index = 0;
-  List<bool> modeSelected = [true, false];
+  List<bool> modeSelected = [true, false, false];
   ScreenshotController screenshotController = ScreenshotController();
   List<bool> isSelected =
       List.generate(6, (index) => index == 0 ? true : false);
@@ -106,9 +106,15 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
   String fileName = '';
   File? file;
   bool startLoading = false;
+  double angle = 0.0;
 
   @override
   Widget build(BuildContext context) {
+    final bool checkRatio = widget.heightImage / widget.widthImage >= 1.3 ||
+            widget.widthImage / widget.heightImage >= 1.3
+        ? true
+        : false;
+    print(widget.widthImage / widget.heightImage);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -176,7 +182,7 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
             Screenshot(
               controller: screenshotController,
               child: SizedBox(
-                height: 430,
+                height: Get.width,
                 child: Center(
                   child: Stack(
                     alignment: Alignment.center,
@@ -186,40 +192,76 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
                         colorOpacity: 0,
                         child: SizedBox(
                             height: widget.heightImage >= widget.widthImage
-                                ? 430
+                                ? modeSelected[1]
+                                    ? Get.width - 100
+                                    : Get.width
                                 : modeSelected[0]
-                                    ? Get.width /
+                                    ? checkRatio
+                                        ? Get.width /
                                             widget.widthImage *
-                                            widget.heightImage +
-                                        50
+                                            widget.heightImage
+                                        : Get.width /
+                                                widget.widthImage *
+                                                widget.heightImage -
+                                            100
                                     : Get.width,
                             width: widget.heightImage >= widget.widthImage
                                 ? modeSelected[0]
-                                    ? 430 /
+                                    ? checkRatio
+                                        ? Get.width /
                                             widget.heightImage *
-                                            widget.widthImage +
-                                        50
-                                    : 430
-                                : Get.width,
+                                            widget.widthImage
+                                        : Get.width /
+                                                widget.heightImage *
+                                                widget.widthImage -
+                                            100
+                                    : Get.width
+                                : modeSelected[1]
+                                    ? Get.width - 100
+                                    : Get.width,
                             child: ImageWidget(
                               listBackground[selected],
                               fit: BoxFit.fill,
                             )),
                       ),
-                      Container(
-                        height: widget.heightImage > widget.widthImage
-                            ? 430
-                            : Get.width /
-                                    widget.widthImage *
-                                    widget.heightImage +
-                                50,
-                        width: widget.heightImage > widget.widthImage
-                            ? 430 / widget.heightImage * widget.widthImage + 50
-                            : Get.width,
-                        padding: const EdgeInsets.all(50),
-                        child: Image.file(
-                          File(widget.pathImage),
-                          fit: BoxFit.contain,
+                      InteractiveViewer(
+                        boundaryMargin: EdgeInsets.all(Get.width / 2),
+                        minScale: 0.85,
+                        maxScale: 2,
+                        child: Container(
+                          height: widget.heightImage >= widget.widthImage
+                              ? modeSelected[1]
+                                  ? Get.width - 100
+                                  : Get.width
+                              : modeSelected[0]
+                                  ? checkRatio
+                                      ? Get.width /
+                                          widget.widthImage *
+                                          widget.heightImage
+                                      : Get.width /
+                                              widget.widthImage *
+                                              widget.heightImage -
+                                          100
+                                  : Get.width,
+                          width: widget.heightImage >= widget.widthImage
+                              ? modeSelected[0]
+                                  ? checkRatio
+                                      ? Get.width /
+                                          widget.heightImage *
+                                          widget.widthImage
+                                      : Get.width /
+                                              widget.heightImage *
+                                              widget.widthImage -
+                                          100
+                                  : Get.width
+                              : modeSelected[1]
+                                  ? Get.width - 100
+                                  : Get.width,
+                          padding: const EdgeInsets.all(20),
+                          child: Image.file(
+                            File(widget.pathImage),
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       )
                     ],
@@ -234,6 +276,7 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
                 width: Get.width,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
@@ -260,46 +303,51 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const Text('Mode',
-                            style:
-                                TextStyle(fontSize: 18, color: Colors.yellow)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(
-                              2,
-                              (index) => GestureDetector(
-                                    onTap: () {
-                                      modeSelected.fillRange(0, 2, false);
-                                      modeSelected[index] = true;
-                                      setState(() {});
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      width: 100,
-                                      decoration: modeSelected[index]
-                                          ? BoxDecoration(
-                                              color: Colors.blue,
-                                              borderRadius:
-                                                  BorderRadius.circular(20))
-                                          : null,
-                                      child: Center(
-                                        child: Text(
-                                            index == 0 ? 'Original' : 'Fill',
-                                            style: const TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.white)),
-                                      ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 30),
+                      child: Text('Mode',
+                          style: TextStyle(fontSize: 18, color: Colors.yellow)),
+                    ),
+                    SizedBox(
+                      width: Get.width,
+                      height: 40,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: List.generate(
+                            3,
+                            (index) => GestureDetector(
+                                  onTap: () {
+                                    modeSelected.fillRange(0, 3, false);
+                                    modeSelected[index] = true;
+                                    setState(() {});
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(
+                                      horizontal: 10,
                                     ),
-                                  )),
-                        ),
-                      ],
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 10),
+                                    width: 150,
+                                    decoration: modeSelected[index]
+                                        ? BoxDecoration(
+                                            color: Colors.blue,
+                                            borderRadius:
+                                                BorderRadius.circular(20))
+                                        : null,
+                                    child: Center(
+                                      child: Text(
+                                          index == 0
+                                              ? 'Vertical'
+                                              : index == 1
+                                                  ? 'Horizontal'
+                                                  : 'Square',
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.white)),
+                                    ),
+                                  ),
+                                )),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     SizedBox(
