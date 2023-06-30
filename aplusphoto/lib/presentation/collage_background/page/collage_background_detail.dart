@@ -29,25 +29,79 @@ class CollageBackgroundDetail extends StatefulWidget {
 }
 
 class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
-  List<String> listBackground = [
-    Picture.background1,
-    Picture.background2,
-    Picture.background3,
-    Picture.background4,
-    Picture.background5,
-    Picture.background6,
-    Picture.background7,
-    Picture.background8,
-    Picture.background9,
-    Picture.background10
+  List<String> listBackgroundMix = [
+    Picture.backgroundMix1,
+    Picture.backgroundMix2,
+    Picture.backgroundMix3,
+    Picture.backgroundMix4,
+    Picture.backgroundMix5,
+    Picture.backgroundMix6,
   ];
+  List<String> listBackgroundBlue = [
+    Picture.backgroundBlue1,
+    Picture.backgroundBlue2,
+    Picture.backgroundBlue3,
+    Picture.backgroundBlue4,
+    Picture.backgroundBlue5,
+    Picture.backgroundBlue6,
+  ];
+
+  List<String> listBackgroundGreen = [
+    Picture.backgroundGreen1,
+    Picture.backgroundGreen2,
+    Picture.backgroundGreen3,
+    Picture.backgroundGreen4,
+    Picture.backgroundGreen5,
+    Picture.backgroundGreen6,
+  ];
+  List<String> listBackgroundRed = [
+    Picture.backgroundRed1,
+    Picture.backgroundRed2,
+    Picture.backgroundRed3,
+    Picture.backgroundRed4,
+    Picture.backgroundRed5,
+    Picture.backgroundRed6,
+  ];
+  List<String> listBackgroundPink = [
+    Picture.backgroundPink1,
+    Picture.backgroundPink2,
+    Picture.backgroundPink3,
+    Picture.backgroundPink4,
+    Picture.backgroundPink5,
+    Picture.backgroundPink6,
+  ];
+  List<String> listBackgroundOrange = [
+    Picture.backgroundOrange1,
+    Picture.backgroundOrange2,
+    Picture.backgroundOrange3,
+    Picture.backgroundOrange4,
+    Picture.backgroundOrange5,
+    Picture.backgroundOrange6,
+  ];
+  List<String> nameBackground = [
+    'Mix',
+    'Green',
+    'Blue',
+    'Red',
+    'Pink',
+    'Orange'
+  ];
+  List listBackground = [
+    Picture.backgroundMix1,
+    Picture.backgroundMix2,
+    Picture.backgroundMix3,
+    Picture.backgroundMix4,
+    Picture.backgroundMix5,
+    Picture.backgroundMix6,
+  ];
+
   double blur = 0;
   int selected = 0;
-
+  int index = 0;
   List<bool> modeSelected = [true, false];
   ScreenshotController screenshotController = ScreenshotController();
   List<bool> isSelected =
-      List.generate(10, (index) => index == 0 ? true : false);
+      List.generate(6, (index) => index == 0 ? true : false);
   String imagePath = '';
   String fileName = '';
   File? file;
@@ -107,7 +161,7 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
                   'Save',
                   style: TextStyle(
                       color: Colors.yellow,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600),
                 )),
           )
@@ -122,7 +176,7 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
             Screenshot(
               controller: screenshotController,
               child: SizedBox(
-                height: 450,
+                height: 430,
                 child: Center(
                   child: Stack(
                     alignment: Alignment.center,
@@ -132,7 +186,7 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
                         colorOpacity: 0,
                         child: SizedBox(
                             height: widget.heightImage >= widget.widthImage
-                                ? 450
+                                ? 430
                                 : modeSelected[0]
                                     ? Get.width /
                                             widget.widthImage *
@@ -141,26 +195,26 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
                                     : Get.width,
                             width: widget.heightImage >= widget.widthImage
                                 ? modeSelected[0]
-                                    ? 450 /
+                                    ? 430 /
                                             widget.heightImage *
                                             widget.widthImage +
                                         50
-                                    : 450
+                                    : 430
                                 : Get.width,
                             child: ImageWidget(
                               listBackground[selected],
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             )),
                       ),
                       Container(
                         height: widget.heightImage > widget.widthImage
-                            ? 450
+                            ? 430
                             : Get.width /
                                     widget.widthImage *
                                     widget.heightImage +
                                 50,
                         width: widget.heightImage > widget.widthImage
-                            ? 450 / widget.heightImage * widget.widthImage + 50
+                            ? 430 / widget.heightImage * widget.widthImage + 50
                             : Get.width,
                         padding: const EdgeInsets.all(50),
                         child: Image.file(
@@ -175,7 +229,7 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
             ),
             const SizedBox(height: 50),
             Positioned(
-              bottom: 10,
+              bottom: 5,
               child: SizedBox(
                 width: Get.width,
                 child: Column(
@@ -237,8 +291,8 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
                                           : null,
                                       child: Center(
                                         child: Text(
-                                            index == 0 ? 'Cover' : 'Fill',
-                                            style: TextStyle(
+                                            index == 0 ? 'Original' : 'Fill',
+                                            style: const TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white)),
                                       ),
@@ -247,47 +301,60 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     SizedBox(
                       width: Get.width,
-                      height: 70,
+                      height: 20,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: List.generate(
-                            listBackground.length,
+                            6,
                             (index) => GestureDetector(
                                   onTap: () {
-                                    for (int i = 0;
-                                        i < isSelected.length;
-                                        i++) {
-                                      if (i == index) {
-                                        isSelected[i] = true;
-                                      } else {
-                                        isSelected[i] = false;
-                                      }
+                                    isSelected = List.generate(6,
+                                        (index) => index == 0 ? true : false);
+                                    this.index = index;
+                                    selected = 0;
+                                    switch (index) {
+                                      case 0:
+                                        listBackground = listBackgroundMix;
+                                        break;
+                                      case 1:
+                                        listBackground = listBackgroundGreen;
+                                        break;
+                                      case 2:
+                                        listBackground = listBackgroundBlue;
+                                        break;
+                                      case 3:
+                                        listBackground = listBackgroundRed;
+                                        break;
+                                      case 4:
+                                        listBackground = listBackgroundPink;
+                                        break;
+
+                                      case 5:
+                                        listBackground = listBackgroundOrange;
+                                        break;
                                     }
-                                    selected = index;
                                     setState(() {});
                                   },
                                   child: Container(
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: isSelected[index] ? 2 : 3),
-                                    height: 70,
-                                    width: 70,
-                                    decoration: BoxDecoration(
-                                        border: isSelected[index]
-                                            ? Border.all(
-                                                width: 3, color: Colors.yellow)
-                                            : null),
-                                    child: ImageWidget(
-                                      listBackground[index],
-                                      fit: BoxFit.cover,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: Text(
+                                      nameBackground[index],
+                                      style: TextStyle(
+                                          color: this.index == index
+                                              ? Colors.yellow
+                                              : Colors.white,
+                                          fontSize: 16),
                                     ),
                                   ),
                                 )),
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 10),
+                    buildListBackGround()
                   ],
                 ),
               ),
@@ -305,6 +372,45 @@ class _CollageBackgroundDetailState extends State<CollageBackgroundDetail> {
               )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildListBackGround() {
+    return SizedBox(
+      width: Get.width,
+      height: 70,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: List.generate(
+            listBackground.length,
+            (index) => GestureDetector(
+                  onTap: () {
+                    for (int i = 0; i < isSelected.length; i++) {
+                      if (i == index) {
+                        isSelected[i] = true;
+                      } else {
+                        isSelected[i] = false;
+                      }
+                    }
+                    selected = index;
+                    setState(() {});
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: 10, vertical: isSelected[index] ? 2 : 3),
+                    height: 70,
+                    width: 70,
+                    decoration: BoxDecoration(
+                        border: isSelected[index]
+                            ? Border.all(width: 3, color: Colors.yellow)
+                            : null),
+                    child: ImageWidget(
+                      listBackground[index],
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )),
       ),
     );
   }

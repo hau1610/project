@@ -152,8 +152,7 @@ class _CollageBackgroundState extends State<CollageBackground> {
       final imageCropped = File(images.path);
       var decodedImage =
           await decodeImageFromList(imageCropped.readAsBytesSync());
-      print(decodedImage.width);
-      print(decodedImage.height);
+
       Get.to(() => CollageBackgroundDetail(
             pathImage: images.path,
             heightImage: decodedImage.height,

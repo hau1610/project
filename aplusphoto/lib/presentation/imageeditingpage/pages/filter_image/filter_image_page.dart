@@ -143,9 +143,7 @@ class _FilterImagePageState extends State<FilterImagePage> {
             text: TextSettings(
               focusNode: textFocusNode,
               textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 18),
+                  fontWeight: FontWeight.bold, color: Colors.red, fontSize: 18),
             ),
             freeStyle: const FreeStyleSettings(
               color: red,
@@ -239,12 +237,36 @@ class _FilterImagePageState extends State<FilterImagePage> {
             ),
             GestureDetector(
                 onTap: () {
-                  setState(() {
-                    reset = true;
-                    Navigator.pushReplacementNamed(context, '/filterpage');
-                    context.read<ImageEdittingBloc>().add(UpdateCropImage(
-                        image: Image.file(File(widget.pathImage))));
-                  });
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext ctx) {
+                        return AlertDialog(
+                          title: const Text('Please Confirm'),
+                          content:
+                              const Text('Do you want to reset the picture?'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  setState(() {
+                                    reset = true;
+                                    Navigator.pushReplacementNamed(
+                                        context, '/filterpage');
+                                    context.read<ImageEdittingBloc>().add(
+                                        UpdateCropImage(
+                                            image: Image.file(
+                                                File(widget.pathImage))));
+                                  });
+                                },
+                                child: const Text('Yes')),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('No'))
+                          ],
+                        );
+                      });
                 },
                 child: const Text('Reset', style: TextStyle(fontSize: 16))),
           ],

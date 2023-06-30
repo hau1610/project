@@ -28,14 +28,52 @@ class Picture {
   static const String collage4c = 'assets/images/collage4c.png';
   static const String collage4d = 'assets/images/collage4d.png';
   static const String addBackground = 'assets/images/add_background.png';
-  static const String background1 = 'assets/images/background1.jpg';
-  static const String background2 = 'assets/images/background2.jpg';
-  static const String background3 = 'assets/images/background3.jpg';
-  static const String background4 = 'assets/images/background4.jpg';
-  static const String background5 = 'assets/images/background5.jpg';
-  static const String background6 = 'assets/images/background6.jpg';
-  static const String background7 = 'assets/images/background7.jpg';
-  static const String background8 = 'assets/images/background8.jpg';
-  static const String background9 = 'assets/images/background9.jpg';
-  static const String background10 = 'assets/images/background10.jpg';
+
+  static const String backgroundMix1 = 'assets/images/background_mix1.jpg';
+  static const String backgroundMix2 = 'assets/images/background_mix2.jpg';
+  static const String backgroundMix3 = 'assets/images/background_mix3.jpg';
+  static const String backgroundMix4 = 'assets/images/background_mix4.jpg';
+  static const String backgroundMix5 = 'assets/images/background_mix5.jpg';
+  static const String backgroundMix6 = 'assets/images/background_mix6.jpg';
+
+  static const String backgroundGreen1 = 'assets/images/background_green1.jpg';
+  static const String backgroundGreen2 = 'assets/images/background_green2.jpg';
+  static const String backgroundGreen3 = 'assets/images/background_green3.jpg';
+  static const String backgroundGreen4 = 'assets/images/background_green4.jpg';
+  static const String backgroundGreen5 = 'assets/images/background_green5.jpg';
+  static const String backgroundGreen6 = 'assets/images/background_green6.jpg';
+
+  static const String backgroundOrange1 =
+      'assets/images/background_orange1.jpg';
+  static const String backgroundOrange2 =
+      'assets/images/background_orange2.jpg';
+  static const String backgroundOrange3 =
+      'assets/images/background_orange3.jpg';
+  static const String backgroundOrange4 =
+      'assets/images/background_orange4.jpg';
+  static const String backgroundOrange5 =
+      'assets/images/background_orange5.jpg';
+  static const String backgroundOrange6 =
+      'assets/images/background_orange6.jpg';
+
+  static const String backgroundBlue1 = 'assets/images/background_blue1.jpg';
+  static const String backgroundBlue2 = 'assets/images/background_blue2.jpg';
+  static const String backgroundBlue3 = 'assets/images/background_blue3.jpg';
+  static const String backgroundBlue4 = 'assets/images/background_blue4.jpg';
+  static const String backgroundBlue5 = 'assets/images/background_blue5.jpg';
+  static const String backgroundBlue6 = 'assets/images/background_blue6.jpg';
+
+  static const String backgroundPink1 = 'assets/images/background_pink1.jpg';
+  static const String backgroundPink2 = 'assets/images/background_pink2.jpg';
+  static const String backgroundPink3 = 'assets/images/background_pink3.jpg';
+  static const String backgroundPink4 = 'assets/images/background_pink4.jpg';
+  static const String backgroundPink5 = 'assets/images/background_pink5.jpg';
+  static const String backgroundPink6 = 'assets/images/background_pink6.jpg';
+
+  static const String backgroundRed1 = 'assets/images/background_red1.jpg';
+  static const String backgroundRed2 = 'assets/images/background_red2.jpg';
+  static const String backgroundRed3 = 'assets/images/background_red3.jpg';
+  static const String backgroundRed4 = 'assets/images/background_red4.jpg';
+  static const String backgroundRed5 = 'assets/images/background_red5.jpg';
+  static const String backgroundRed6 = 'assets/images/background_red6.jpg';
 }
