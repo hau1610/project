@@ -4,6 +4,25 @@ class IconConstants {
   static const String favouriteIcon = 'assets/icons/favourite.svg';
   static const String cameraIcon = 'assets/icons/camera.svg';
   static const String library = 'assets/icons/library.svg';
+  static const String cameraButton = 'assets/icons/camera_button.svg';
+  static const String collageButton = 'assets/icons/collage_button.svg';
+  static const String backgroundButton = 'assets/icons/background_button.svg';
+  static const String addBackground = 'assets/icons/add_background.svg';
+
+  static const String libraryButton = 'assets/icons/library_button.svg';
+  static const String collageIntrodution = 'assets/icons/collage_button.svg';
+  static const String backgroundIntroduction =
+      'assets/icons/background_introduction.svg';
+  static const String fillterIntroduction =
+      'assets/icons/fillter_introduction.svg';
+  static const String collageIntroduction =
+      'assets/icons/collage_introduction.svg';
+
+  static const String cropIntroduction = 'assets/icons/crop_introduction.svg';
+  static const String stickerIntroduction =
+      'assets/icons/sticker_introduction.svg';
+
+  static const String drawIntroduction = 'assets/icons/draw_introduction.svg';
 }
 
 class Picture {
@@ -28,6 +47,9 @@ class Picture {
   static const String collage4c = 'assets/images/collage4c.png';
   static const String collage4d = 'assets/images/collage4d.png';
   static const String addBackground = 'assets/images/add_background.png';
+  static const String onboarding1 = 'assets/images/onboarding1.png';
+  static const String onboarding2 = 'assets/images/onboarding2.png';
+  static const String onboarding3 = 'assets/images/onboarding3.png';
 
   static const String backgroundMix1 = 'assets/images/background_mix1.jpg';
   static const String backgroundMix2 = 'assets/images/background_mix2.jpg';

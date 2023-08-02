@@ -27,35 +27,35 @@ class _CollageBackgroundState extends State<CollageBackground> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            Container(
+            SizedBox(
               height: Get.height,
               width: Get.width,
-              color: Colors.blueAccent,
+              child: const ImageWidget(IconConstants.addBackground),
             ),
-            Positioned(
-              top: -100,
-              right: -150,
-              child: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.orange,
-                ),
-                height: 300,
-                width: 300,
-              ),
-            ),
-            Positioned(
-              bottom: -100,
-              left: -150,
-              child: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.yellow,
-                ),
-                height: 300,
-                width: 300,
-              ),
-            ),
+            // Positioned(
+            //   top: -100,
+            //   right: -150,
+            //   child: Container(
+            //     decoration: const BoxDecoration(
+            //       shape: BoxShape.circle,
+            //       color: Colors.orange,
+            //     ),
+            //     height: 300,
+            //     width: 300,
+            //   ),
+            // ),
+            // Positioned(
+            //   bottom: -100,
+            //   left: -150,
+            //   child: Container(
+            //     decoration: const BoxDecoration(
+            //       shape: BoxShape.circle,
+            //       color: Colors.yellow,
+            //     ),
+            //     height: 300,
+            //     width: 300,
+            //   ),
+            // ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -79,7 +79,7 @@ class _CollageBackgroundState extends State<CollageBackground> {
                   child: Text(
                     'I M A G E',
                     style: TextStyle(
-                        color: Colors.yellow,
+                        color: Colors.white,
                         fontSize: 30,
                         fontWeight: FontWeight.w500),
                   ),
@@ -91,7 +91,7 @@ class _CollageBackgroundState extends State<CollageBackground> {
                     Container(
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 242, 242, 175),
                       ),
                       height: 8,
                       width: 8,
@@ -100,13 +100,13 @@ class _CollageBackgroundState extends State<CollageBackground> {
                     Container(
                       width: 100,
                       height: 3,
-                      color: Colors.yellowAccent,
+                      color: Color.fromARGB(255, 242, 242, 175),
                     ),
                     const SizedBox(width: 15),
                     Container(
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 242, 242, 175),
                       ),
                       height: 8,
                       width: 8,
@@ -126,7 +126,10 @@ class _CollageBackgroundState extends State<CollageBackground> {
                           gradient: const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
-                              colors: [Colors.lightGreen, Colors.green])),
+                              colors: [
+                                Colors.lightGreen,
+                                Color.fromARGB(255, 3, 138, 8)
+                              ])),
                       child: const Center(
                         child: Text(
                           'Choose Image',

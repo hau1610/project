@@ -58,7 +58,7 @@ class _CollageImagePageState extends State<CollageImagePage> {
             Container(
               height: Get.height,
               width: Get.width,
-              color: Colors.black.withOpacity(0.7),
+              color: Color.fromARGB(255, 206, 242, 239),
             ),
             SizedBox(
               height: Get.height,
@@ -76,7 +76,7 @@ class _CollageImagePageState extends State<CollageImagePage> {
                     child: Text(
                       'COLLAGE',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.blue,
                           fontSize: 35,
                           fontWeight: FontWeight.w600),
                     ),
@@ -85,7 +85,7 @@ class _CollageImagePageState extends State<CollageImagePage> {
                     child: Text(
                       'I M A G E',
                       style: TextStyle(
-                          color: Colors.yellow,
+                          color: Colors.blue,
                           fontSize: 30,
                           fontWeight: FontWeight.w500),
                     ),
@@ -97,7 +97,7 @@ class _CollageImagePageState extends State<CollageImagePage> {
                       Container(
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.white,
+                          color: Colors.yellowAccent,
                         ),
                         height: 8,
                         width: 8,
@@ -112,7 +112,7 @@ class _CollageImagePageState extends State<CollageImagePage> {
                       Container(
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.white,
+                          color: Colors.yellowAccent,
                         ),
                         height: 8,
                         width: 8,
@@ -137,8 +137,9 @@ class _CollageImagePageState extends State<CollageImagePage> {
                                       end: Alignment.bottomRight,
                                       colors: index == 0
                                           ? [
+                                              Color.fromARGB(
+                                                  255, 232, 164, 239),
                                               Colors.pinkAccent,
-                                              Colors.deepPurpleAccent,
                                             ]
                                           : index == 1
                                               ? [

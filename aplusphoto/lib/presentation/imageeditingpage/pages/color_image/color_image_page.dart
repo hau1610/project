@@ -31,7 +31,7 @@ class _ColorImagePageState extends State<ColorImagePage> {
     Icons.brightness_6_rounded,
     Icons.deblur_rounded
   ];
-  final List<String> name = ['Brightness', 'Hue', 'Saturation'];
+  final List<String> name = ['Brightness', 'Contrast', 'Saturation'];
   @override
   Widget build(BuildContext context) {
     return SizedBox(

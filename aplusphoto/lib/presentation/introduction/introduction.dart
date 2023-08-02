@@ -53,7 +53,7 @@ class Introduction extends StatelessWidget {
                               Color.fromRGBO(51, 174, 233, 1),
                               Color.fromRGBO(20, 210, 230, 1),
                             ])),
-                    child: const Text('TRY IT NOW',
+                    child: const Text("LET'S START",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w700,

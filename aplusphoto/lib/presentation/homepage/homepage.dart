@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-
 import '../../common/global_instance.dart';
 import '../../common/images/image.dart';
 import '../../common/widgets/image_widget.dart';
@@ -22,30 +20,21 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final List<String> categories = [
-      'Camera',
-      'Gallery',
-      'Collage',
-      'Background'
-    ];
-    final List<String> icons = [
-      Picture.camera,
-      Picture.photo,
-      Picture.collage,
-      Picture.addBackground
-    ];
-    final List<Color> colors = [
-      const Color.fromRGBO(113, 195, 249, 1),
-      const Color.fromRGBO(255, 117, 159, 1),
-      Colors.orange,
-      const Color.fromRGBO(83, 225, 59, 1),
+
+    final List<String> introductions = [
+      IconConstants.cropIntroduction,
+      IconConstants.fillterIntroduction,
+      IconConstants.stickerIntroduction,
+      IconConstants.drawIntroduction,
+      IconConstants.collageIntroduction,
+      IconConstants.backgroundIntroduction,
     ];
 
     List<String> images = [
-      'https://znews-photo.zingcdn.me/w860/Uploaded/mdf_eioxrd/2021_07_06/2.jpg',
-      'https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg',
-      'https://cdn.alongwalk.info/vn/wp-content/uploads/2022/04/27034030/image-dung-hinh-ha-giang-thang-9-dep-me-man-trong-moi-khung-hinh-cua-dan-me-phuot-165098043084633.jpg',
-      'https://img.meta.com.vn/Data/image/2022/01/13/anh-dep-thien-nhien-10.jpg'
+      IconConstants.cameraButton,
+      IconConstants.libraryButton,
+      IconConstants.collageButton,
+      IconConstants.backgroundButton
     ];
     return Scaffold(
         appBar: AppBar(
@@ -55,7 +44,7 @@ class HomePage extends StatelessWidget {
           centerTitle: true,
           title: const ImageWidget(
             Picture.logo,
-            width: 150,
+            width: 180,
           ),
           actions: [
             GestureDetector(
@@ -79,37 +68,24 @@ class HomePage extends StatelessWidget {
               child: ListView(
                 children: [
                   const SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'My Images',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w700),
-                        ),
-                        Text(
-                          '10 images',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: Colors.blue.withOpacity(0.3)),
-                        )
-                      ],
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      'Introduction',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
                     ),
                   ),
+                  const SizedBox(height: 20),
                   SizedBox(
-                      height: 200,
+                      height: 280,
                       child: Swiper(
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            child: ImageWidget(
-                              images[index],
-                              borderRadius: 20,
-                              fit: BoxFit.cover,
-                            ),
-                          );
+                              margin: EdgeInsets.only(bottom: 20),
+                              child: ImageWidget(introductions[index]));
                         },
                         pagination: SwiperPagination(
                             margin: const EdgeInsets.only(top: 40),
@@ -117,12 +93,12 @@ class HomePage extends StatelessWidget {
                                 size: 7,
                                 color: Colors.grey.withOpacity(0.7),
                                 activeColor: Colors.deepPurple)),
-                        itemCount: images.length,
+                        itemCount: introductions.length,
                         viewportFraction: 0.55,
                         scale: 0.8,
                         autoplay: true,
                       )),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
@@ -134,12 +110,12 @@ class HomePage extends StatelessWidget {
                               fontSize: 16, fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 30,
                         ),
                         SizedBox(
-                          height: 150,
+                          height: 300,
                           child: GridView.count(
-                            childAspectRatio: 3,
+                            childAspectRatio: 3 / 2,
                             primary: false,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 20,
@@ -165,133 +141,14 @@ class HomePage extends StatelessWidget {
                                               () => const CollageBackground());
                                         }
                                       },
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: 50,
-                                            width: 50,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color:
-                                                  Colors.grey.withOpacity(0.15),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  width: 2,
-                                                  height: 40,
-                                                  color: colors[index],
-                                                ),
-                                                ImageWidget(
-                                                  icons[index],
-                                                  height: 30,
-                                                  width: 30,
-                                                ),
-                                                Container()
-                                              ],
-                                            ),
-                                          ),
-                                          const SizedBox(width: 10),
-                                          Text(
-                                            categories[index],
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          )
-                                        ],
+                                      child: ImageWidget(
+                                        images[index],
+                                        borderRadius: 20,
+                                        fit: BoxFit.contain,
                                       ),
                                     )),
                           ),
                         ),
-                        const SizedBox(height: 40),
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              height: 150,
-                              width: width,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                      width: 1,
-                                      color: Colors.black.withOpacity(0.3))),
-                              child: const ImageWidget(
-                                Picture.greyBackground,
-                                borderRadius: 20,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        const Text('Statistics',
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700,
-                                            )),
-                                        const SizedBox(height: 10),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            buildStatisticItem(
-                                                'Used', '0 GB', Colors.black),
-                                            buildStatisticItem(
-                                                'Total Files',
-                                                '0',
-                                                Colors.black.withOpacity(0.5))
-                                          ],
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            buildStatisticItem(
-                                                'Time of day use',
-                                                '10 hours',
-                                                Colors.black.withOpacity(0.2)),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  CircularPercentIndicator(
-                                    radius: 60.0,
-                                    animation: true,
-                                    animationDuration: 1200,
-                                    lineWidth: 18.0,
-                                    percent: 10 / 24,
-                                    center: new Text(
-                                      "10 hours",
-                                      style: new TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 17.0),
-                                    ),
-                                    circularStrokeCap: CircularStrokeCap.butt,
-                                    progressColor: Colors.deepPurple,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        )
                       ],
                     ),
                   ),
