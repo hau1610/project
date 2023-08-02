@@ -89,42 +89,42 @@ class CollageBloc extends Bloc<CollageEvent, CollageState> {
   ///Asking permission (Platform specific)
   askPermission(
       bool isFromPicker, PermissionType permissionType, int index) async {
-    Map<Permission, PermissionStatus> statuses = {};
+    //  Map<Permission, PermissionStatus> statuses = {};
 
     /// You can request multiple permissions at once.
-    if (Platform.isIOS) {
-      statuses = await [
-        Permission.photos,
-        Permission.storage,
-      ].request();
-    } else {
-      statuses = await [Permission.camera, Permission.storage].request();
-    }
-    bool isForStorage = permissionType == PermissionType.Storage;
-    if (isForStorage) {
-      if (Platform.isIOS) {
-        ///For iOS we need to access photos
-        await Permission.photos.request().then((value) => eventAction(
-            isForStorage, isFromPicker, permissionType, index, statuses));
-      } else {
-        ///For Android we need to access storage
-        await Permission.storage.request().then((value) => eventAction(
-            isForStorage, isFromPicker, permissionType, index, statuses));
-      }
-    } else {
-      ///If coming from camera then we need to take permission of camera (In both platform)
-      await Permission.camera.request().then((value) => eventAction(
-          isForStorage, isFromPicker, permissionType, index, statuses));
-    }
+    // if (Platform.isIOS) {
+    //   statuses = await [
+    //     Permission.photos,
+    //     Permission.storage,
+    //   ].request();
+    // } else {
+    //   statuses = await [Permission.camera, Permission.storage].request();
+    // }
+    // bool isForStorage = permissionType == PermissionType.Storage;
+    // if (isForStorage) {
+    //   if (Platform.isIOS) {
+    //     ///For iOS we need to access photos
+    //     await Permission.photos.request().then((value) => eventAction(
+    //         isForStorage, isFromPicker, permissionType, index, statuses));
+    //   } else {
+    //     ///For Android we need to access storage
+    //     await Permission.storage.request().then((value) => eventAction(
+    //         isForStorage, isFromPicker, permissionType, index, statuses));
+    //   }
+    // } else {
+    //   ///If coming from camera then we need to take permission of camera (In both platform)
+    //   await Permission.camera.request().then((value) => eventAction(
+    //       isForStorage, isFromPicker, permissionType, index, statuses));
+    // }
+    eventAction(isFromPicker, permissionType, index);
   }
 
   ///On click of allow or denied event this method will be called...
   eventAction(
-      bool isForStorage,
-      bool isFromPicker,
-      PermissionType permissionType,
-      int index,
-      Map<Permission, PermissionStatus> status) {
+    bool isFromPicker,
+    PermissionType permissionType,
+    int index,
+  ) {
     // if (status[isForStorage
     //         ? Platform.isIOS
     //             ? Permission.photos

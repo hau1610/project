@@ -21,8 +21,16 @@ class IconConstants {
   static const String cropIntroduction = 'assets/icons/crop_introduction.svg';
   static const String stickerIntroduction =
       'assets/icons/sticker_introduction.svg';
+  static const String logoCollage = 'assets/icons/logo_collage.svg';
+
+  static const String buttonCollageTwo = 'assets/icons/button_collage_two.svg';
+  static const String buttonCollageThree =
+      'assets/icons/button_collage_three.svg';
+  static const String buttonCollageFour =
+      'assets/icons/button_collage_four.svg';
 
   static const String drawIntroduction = 'assets/icons/draw_introduction.svg';
+  static const String backgroundCollage = 'assets/icons/background_collage.svg';
 }
 
 class Picture {

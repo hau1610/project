@@ -17,7 +17,12 @@ class CollageImagePage extends StatefulWidget {
 
 class _CollageImagePageState extends State<CollageImagePage> {
   var color = Colors.white;
-  List<String> images = [Picture.collage2, Picture.collage3, Picture.collage4];
+  List<String> button = [
+    IconConstants.buttonCollageTwo,
+    IconConstants.buttonCollageThree,
+    IconConstants.buttonCollageFour
+  ];
+
   List<String> titles = [
     'Collage Two Image',
     'Collage Three Image',
@@ -48,6 +53,7 @@ class _CollageImagePageState extends State<CollageImagePage> {
     ///Create multple shapes
     return Scaffold(
         extendBodyBehindAppBar: true,
+        extendBody: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -58,118 +64,32 @@ class _CollageImagePageState extends State<CollageImagePage> {
             Container(
               height: Get.height,
               width: Get.width,
-              color: Color.fromARGB(255, 206, 242, 239),
+              child: ImageWidget(IconConstants.backgroundCollage),
             ),
             SizedBox(
               height: Get.height,
               width: Get.width,
               child: ListView(
                 children: [
-                  const ImageWidget(
-                    Picture.collage,
-                    height: 120,
-                    width: 120,
+                  ImageWidget(
+                    IconConstants.logoCollage,
+                    height: 320,
                     fit: BoxFit.contain,
                   ),
-                  const SizedBox(height: 15),
-                  const Center(
-                    child: Text(
-                      'COLLAGE',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 35,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      'I M A G E',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.yellowAccent,
-                        ),
-                        height: 8,
-                        width: 8,
-                      ),
-                      const SizedBox(width: 15),
-                      Container(
-                        width: 100,
-                        height: 3,
-                        color: Colors.yellowAccent,
-                      ),
-                      const SizedBox(width: 15),
-                      Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.yellowAccent,
-                        ),
-                        height: 8,
-                        width: 8,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 50),
                   Column(
                     children: List.generate(
-                        images.length,
+                        button.length,
                         (index) => GestureDetector(
-                              onTap: () => pushImageWidget(collageType[index]),
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 40, vertical: 10),
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: index == 0
-                                          ? [
-                                              Color.fromARGB(
-                                                  255, 232, 164, 239),
-                                              Colors.pinkAccent,
-                                            ]
-                                          : index == 1
-                                              ? [
-                                                  Colors.blueAccent,
-                                                  Colors.blueGrey
-                                                ]
-                                              : [
-                                                  Colors.greenAccent,
-                                                  Colors.blueGrey
-                                                ],
-                                    )),
-                                child: Column(
-                                  children: [
-                                    ImageWidget(
-                                      images[index],
-                                      height: 50,
-                                      color: Colors.white,
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      titles[index],
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )),
+                            onTap: () => pushImageWidget(collageType[index]),
+                            child: Container(
+                                child: ImageWidget(
+                              button[index],
+                              height: 110,
+                              fit: BoxFit.contain,
+                            )))),
+                  ),
+                  const SizedBox(
+                    height: 50,
                   )
                 ],
               ),

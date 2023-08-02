@@ -101,10 +101,6 @@ class _ImageCollageWidget extends State<ImageCollageWidget>
     );
   }
 
-  void _handlePermission() {
-    _imageListBloc.add(CheckPermissionEvent(true, PermissionType.Storage, 0));
-  }
-
   Widget _gridView() {
     return AspectRatio(
       aspectRatio: 1.0 / 1.0,

@@ -46,15 +46,6 @@ class HomePage extends StatelessWidget {
             Picture.logo,
             width: 180,
           ),
-          actions: [
-            GestureDetector(
-                onTap: () {},
-                child: Container(
-                  margin: const EdgeInsets.only(right: 10),
-                  child: Icon(Icons.logout,
-                      size: 18, color: Colors.black.withOpacity(0.7)),
-                ))
-          ],
         ),
         body: BlocListener<HomePageBloc, HomePageState>(
             listener: (context, state) {
